@@ -1,0 +1,27 @@
+# Node
+backend/node_modules/
+backend/npm-debug.log*
+
+# Flutter/Dart
+frontend/.dart_tool/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.packages
+frontend/build/
+frontend/.idea/
+frontend/android/.gradle/
+frontend/android/local.properties
+frontend/ios/Pods/
+frontend/macos/Pods/
+frontend/linux/flutter/ephemeral/
+frontend/windows/flutter/ephemeral/
+
+# IDE / OS
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+
+# Dados locais da API (tem nome e telefone dos tutores, não subo para o GitHub)
+backend/data/
+*.tmp
