@@ -50,3 +50,10 @@ jobs:
 
       - name: Compilar para web
         run: flutter build web --release
+
+      # Guardo o site compilado para dar para baixar e testar sem ter o Flutter.
+      - name: Salvar o site compilado
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotel-pets-web
+          path: frontend/build/web
