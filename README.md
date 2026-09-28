@@ -38,6 +38,7 @@ hotel-pets/
 │   ├── web/
 │   └── pubspec.yaml
 ├── run-system.bat
+├── run-sem-flutter.bat
 ├── run-backend.bat
 ├── run-frontend.bat
 └── README.md
@@ -48,6 +49,17 @@ hotel-pets/
 ### Windows (jeito mais fácil)
 
 Dar dois cliques em `run-system.bat`. Ele abre uma janela para o back-end e outra para o Flutter.
+
+### Windows sem o Flutter instalado
+
+Se não tiver o Flutter (ou ele estiver bloqueado na máquina), dá para usar o site já compilado pelo GitHub Actions:
+
+1. Na aba **Actions** do repositório, abra a execução mais recente
+2. Em **Artifacts**, baixe o **hotel-pets-web**
+3. Extraia o conteúdo numa pasta `site`, dentro do projeto
+4. Dê dois cliques em `run-sem-flutter.bat`
+
+Ele sobe o back-end, sobe o site e abre `http://localhost:8080` no navegador. Precisa só do Node.js.
 
 ### Back-End
 
