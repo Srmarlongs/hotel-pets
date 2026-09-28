@@ -1,0 +1,52 @@
+# Aqui eu configurei o GitHub Actions para testar o projeto a cada commit.
+# Ele roda o back-end e compila o Flutter Web na nuvem do GitHub.
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm ci
+
+      # Subo a API e faço uma requisição para ver se ela responde.
+      - name: Testar se a API sobe
+        run: |
+          node server.js &
+          sleep 3
+          curl --fail http://localhost:3000/api/animals
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Baixar dependências
+        run: flutter pub get
+
+      - name: Analisar o código
+        run: flutter analyze --no-fatal-infos
+
+      - name: Compilar para web
+        run: flutter build web --release
