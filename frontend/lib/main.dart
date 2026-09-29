@@ -343,11 +343,14 @@ class _HomePageState extends State<HomePage> {
       lastDate: lastDate,
     );
 
-    if (date == null) return;
+    if (date == null || !mounted) return;
 
-    controller.text = '${date.year.toString().padLeft(4, '0')}-'
-        '${date.month.toString().padLeft(2, '0')}-'
-        '${date.day.toString().padLeft(2, '0')}';
+    // Uso o setState para a tela atualizar o botão de limpar a data.
+    setState(() {
+      controller.text = '${date.year.toString().padLeft(4, '0')}-'
+          '${date.month.toString().padLeft(2, '0')}-'
+          '${date.day.toString().padLeft(2, '0')}';
+    });
   }
 
   void _showMessage(String message, {bool isError = false}) {
@@ -427,7 +430,19 @@ class _HomePageState extends State<HomePage> {
       readOnly: true,
       onTap: () => _pickDate(controller),
       decoration: _decoration(label).copyWith(
-        suffixIcon: const Icon(Icons.calendar_month),
+        // Como a saída é opcional, coloquei um botão para apagar a data
+        // caso a pessoa tenha escolhido e depois desistido.
+        suffixIcon: optional && controller.text.isNotEmpty
+            ? IconButton(
+                tooltip: 'Limpar data',
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  setState(() {
+                    controller.clear();
+                  });
+                },
+              )
+            : const Icon(Icons.calendar_month),
       ),
       validator: (value) {
         if (optional && (value == null || value.trim().isEmpty)) {
