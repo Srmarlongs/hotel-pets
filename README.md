@@ -42,12 +42,15 @@ hotel-pets/
 ├── run-sem-flutter.bat
 ├── run-backend.bat
 ├── run-frontend.bat
+├── COMO_RODAR.md
 └── README.md
 ```
 
 Deixei o back-end e o front-end em pastas separadas no mesmo repositório para ficar mais fácil de baixar e rodar tudo junto.
 
 ## Como rodar
+
+> Deixei um passo a passo completo, com CMD, PowerShell e os erros mais comuns, no arquivo **[COMO_RODAR.md](COMO_RODAR.md)**.
 
 ### Windows (jeito mais fácil)
 
